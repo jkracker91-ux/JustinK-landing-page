@@ -19,10 +19,10 @@ A starter template for your personal landing page deployed to AWS S3.
 ├── .gitignore        ← Keeps junk files out of your repo
 ├── README.md         ← This file
 └── images/
-    ├── cat-sleeping.jpg  ← Placeholder — replace with your photo
-    ├── dog-happy.jpg     ← Placeholder — replace with your photo
-    ├── cat-curious.jpg   ← Placeholder — replace with your photo
-    └── dog-sitting.jpg   ← Placeholder — replace with your photo
+    ├── DSC01957.JPG
+    ├── file-10.jpeg
+    ├── Manchester_United_FC_crest.svg.png
+    └── w-logo-with-wordmark_0.jpg
 ```
 
 ## Customizing
