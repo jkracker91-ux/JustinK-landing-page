@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name — Personal Page</title>
+    <title>Justin Kracker — Personal Page</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/lightbox.css">
 </head>
 <body>
     <header>
@@ -17,28 +18,36 @@
     </header>
 
     <main>
+        <p class="gallery-hint">Click any photo to view it larger. Press Escape or click the dark backdrop to close.</p>
         <section class="gallery">
             <div class="photo">
-                <img src="images/DSC01957.JPG" alt="Me">
+                <img class="gallery__thumb" src="images/DSC01957.JPG" alt="Me">
                 <p>Me</p>
             </div>
             <div class="photo">
-                <img src="images/file-10.jpeg" alt="Me also">
+                <img class="gallery__thumb" src="images/file-10.jpeg" alt="Me also">
                 <p>Me Also</p>
             </div>
             <div class="photo">
-                <img src="images/Manchester_United_FC_crest.svg.png" alt="Manchester United FC crest">
+                <img class="gallery__thumb" src="images/Manchester_United_FC_crest.svg.png" alt="Manchester United FC crest">
                 <p>Manchester United Fan</p>
             </div>
             <div class="photo">
-                <img src="images/w-logo-with-wordmark_0.jpg" alt="University of Washington Tacoma">
+                <img class="gallery__thumb" src="images/w-logo-with-wordmark_0.jpg" alt="University of Washington Tacoma">
                 <p>University of Washington Tacoma</p>
             </div>
         </section>
     </main>
 
+    <div class="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+        <img class="lightbox__img" src="" alt="">
+        <div class="lightbox__caption"></div>
+    </div>
+
     <footer>
         <p>Deployed to AWS S3 — Cloud Web App Engineering, 2026</p>
     </footer>
+
+    <script src="js/lightbox.js"></script>
 </body>
 </html>

@@ -98,7 +98,15 @@ header nav a:hover {
     transform: translateY(-20px) scale(1.04);
 }
 
+.gallery-hint {
+    text-align: center;
+    font-size: 14px;
+    color: #8e8e8e;
+    margin-bottom: 8px;
+}
+
 .photo img {
+    cursor: pointer;
     width: 190px;
     height: 190px;
     object-fit: cover;
