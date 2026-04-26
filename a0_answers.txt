@@ -1,0 +1,209 @@
+TCSS 506 - Assignment 1: Become Familiar with Linux
+Justin K
+=============================================================================
+
+
+1. How many total processes are present shortly after the Ubuntu VM boots up?
+
+Output:
+(Paste your output here after running the script, e.g.)
+142
+
+Explanation:
+I used "ps aux --no-headers | wc -l" to answer this question. The "ps" command
+reports a snapshot of current processes. The "aux" flags mean: "a" shows
+processes from all users, "u" displays in user-oriented format, and "x" includes
+processes not attached to a terminal. The "--no-headers" flag removes the column
+header line so it is not counted. The output is piped to "wc -l" which counts
+the number of lines, giving the total number of processes. Shortly after boot
+there were approximately [INSERT NUMBER] processes running.
+
+
+2. How many total threads are present shortly after the Ubuntu VM boots up?
+
+Output:
+(Paste your output here, e.g.)
+238
+
+Explanation:
+I used "ps -eLf --no-headers | wc -l" to answer this question. The "ps" command
+lists processes, and the "-eLf" flags expand the listing: "-e" selects all
+processes, "-L" shows individual threads (lightweight processes) for each
+process, and "-f" gives full-format output. The "--no-headers" flag removes the
+header row. Piping to "wc -l" counts total lines, which equals the total number
+of threads. Shortly after boot there were approximately [INSERT NUMBER] threads.
+
+
+3. What is the version number of the Linux kernel installed on the Ubuntu VM?
+
+Output:
+(Paste your output here, e.g.)
+6.8.0-45-generic
+
+Explanation:
+I used "uname -r" to answer this question. The "uname" command prints system
+information. The "-r" flag specifically prints the kernel release version.
+The kernel version installed is [INSERT VERSION, e.g. 6.8.0-45-generic].
+
+
+4. What is the model name of the CPU(s) of the VM?
+
+Output:
+(Paste your output here, e.g.)
+Model name:   Intel(R) Core(TM) i7-10750H CPU @ 2.60GHz
+
+Explanation:
+I used "lscpu | grep 'Model name'" to answer this question. The "lscpu" command
+displays detailed CPU architecture information. Piping to "grep 'Model name'"
+filters the output to show only the line containing the CPU model name.
+The CPU model is [INSERT MODEL NAME].
+
+According to [Wikipedia / Intel ARK]:
+- Number of CPU cores: [INSERT, e.g. 6 cores]
+- Release date: [INSERT, e.g. Q2 2020]
+- Original retail price: [INSERT, e.g. $395]
+
+
+5. What is the total size of the memory swap space (virtual memory) in MB?
+
+Output:
+(Paste your output here, e.g.)
+Swap:          4095           0        4095
+
+Explanation:
+I used "free -m | grep Swap" to answer this question. The "free" command
+displays the amount of free and used memory in the system. The "-m" flag
+formats the output in megabytes. Piping to "grep Swap" filters to show only the
+swap line. The columns are: total, used, and free. The total swap space is
+[INSERT NUMBER] MB (the first number on the Swap line).
+
+
+6. What is the free disk space of the root disk partition in MB?
+
+Output:
+(Paste your output here, e.g.)
+Filesystem     1M-blocks  Used Available Use% Mounted on
+/dev/sda1          25034  8921     14816  38% /
+
+Explanation:
+I used "df -m /" to answer this question. The "df" command reports file system
+disk space usage. The "-m" flag displays sizes in megabytes. The "/" argument
+specifies the root partition. The "Available" column shows the free disk space.
+The free disk space on the root partition is [INSERT NUMBER] MB.
+
+
+7. What is the total number of inodes on the root filesystem?
+
+Output:
+(Paste your output here, e.g.)
+Filesystem      Inodes  IUsed   IFree IUse% Mounted on
+/dev/sda1      1638400 215040 1423360   14% /
+
+Explanation:
+I used "df -i /" to answer this question. The "df" command reports disk space
+usage, and the "-i" flag switches it to display inode information instead of
+block usage. An inode is a data structure on a Linux filesystem that stores
+metadata about a file or directory (permissions, ownership, timestamps, and
+pointers to the data blocks), but not the file name or its data. Every file
+and directory has an inode. The "Inodes" column shows the total number. The
+total number of inodes on the root filesystem is [INSERT NUMBER].
+
+
+8. What is the average round trip time (RTT) of 10 ICMP pings to www.google.com?
+
+Output:
+(Paste your output here, e.g.)
+PING www.google.com (142.250.80.68) 56(84) bytes of data.
+64 bytes from sea30s13-in-f4.1e100.net: icmp_seq=1 ttl=115 time=12.3 ms
+...
+--- www.google.com ping statistics ---
+10 packets transmitted, 10 received, 0% packet loss, time 9015ms
+rtt min/avg/max/mdev = 11.234/14.567/18.901/2.345 ms
+
+Explanation:
+I used "ping -c 10 www.google.com" to answer this question. The "ping" command
+sends ICMP Echo Request packets to a network host and measures the round trip
+time. The "-c 10" flag limits it to sending exactly 10 packets. Each line of
+output shows the time for one packet (e.g. "time=12.3 ms"). At the end, a
+summary line shows "rtt min/avg/max/mdev". The "avg" value in that summary
+line is the average round trip time. The average RTT was [INSERT NUMBER] ms.
+
+
+9. What is the interface name of the network device used to route ICMP pings
+   to www.google.com?
+
+Output:
+(Paste your output here, e.g.)
+142.250.80.68 via 10.0.2.2 dev enp0s3 src 10.0.2.15 uid 1000
+
+Explanation:
+I used "ip route get $(dig +short www.google.com | head -1)" to answer this
+question. The "dig +short www.google.com | head -1" part resolves www.google.com
+to its IP address. Then "ip route get <IP>" shows the kernel routing table entry
+that would be used to reach that IP address. The "dev" field in the output
+identifies the network interface device used. The network interface name is
+[INSERT NAME, e.g. enp0s3 or eth0].
+
+
+10. Identify the file system type of the "/" root partition.
+
+Output:
+(Paste your output here, e.g.)
+Filesystem     Type 1M-blocks  Used Available Use% Mounted on
+/dev/sda1      ext4     25034  8921     14816  38% /
+
+Explanation:
+I used "df -T /" to answer this question. The "df" command reports filesystem
+disk space usage, and the "-T" flag adds a "Type" column showing the filesystem
+type.
+
+Brief description of ext4:
+ext4 (fourth extended filesystem) is the default Linux filesystem. It is a
+journaling filesystem that evolved from ext3, supporting volumes up to 1
+exbibyte and files up to 16 tebibytes, with improved performance and reliability.
+
+Features added since July 2017 (from man ext4 / kernel docs):
+1. Large directory optimization (dir_index) - Uses hashed B-trees to speed up
+   lookups in directories with a large number of entries.
+2. Inline data (inline_data) - Allows very small files and directories to store
+   their data directly in the inode itself rather than in separate data blocks,
+   reducing disk I/O.
+
+(NOTE: Run "man ext4" on your VM and search for features with dates. Replace
+the above with the actual features and descriptions you find in the manual page.
+Press "/" to search within the man page and "q" to quit.)
+
+
+
+BONUS #1: Two Unfamiliar Linux Commands
+
+
+Command 1: lsblk
+
+Example usage:
+$ lsblk
+
+Description:
+lsblk (list block devices) displays information about all available block
+devices on the system, such as hard drives, SSDs, USB drives, and their
+partitions, in a tree-like format. It shows device names, sizes, types, and
+mount points. This would be useful when you plug in a new USB drive and need
+to find its device name before mounting it, or when you need
+to verify disk partition layouts before resizing or reformatting a drive, or really 
+need to understand where exactly you are in the file tree.
+
+
+Command 2: uptime
+
+Example usage:
+$ uptime -p
+
+Description:
+uptime shows how long the system has been running since its last boot, along
+with the current time, the number of logged-in users, and the system load
+averages for the past 1, 5, and 15 minutes. The "-p" flag displays the uptime
+in a human-readable format (e.g. "up 2 hours, 15 minutes"). This is useful for
+checking server availability and diagnosing whether a system has recently
+rebooted unexpectedly, or for monitoring how long a machine has been running
+without a restart during maintenance windows.
+
